@@ -4,16 +4,16 @@ This repository holds a collection of helper scripts to synchronize linux config
 multiple systems. It also contains a collection of helper scripts, including a script for  managing
 notes in the central repository, a quick way to start a bash script from script templates and more.
 
-## What is this?
+## What is This?
 The contents of this repository help with the following tasks:
 - Managing all your Linux configuration files in a central git repository
 - Manage your notes in Github-markdown syntax files in the same repository
 - Speeding up common console operations (like adding aliases or creating new bash scripts)
 
-## Who is this for?
+## Who is This for?
 These scripts were written to be used in a bash console on kubuntu and mint distributions. If you have such a setup, you should be able to use this immediately. If not, the scripts should still work, but have not been tested. There might be portability issues.
 
-## How does it Work?
+## How Does it Work?
 The files you need on all your machines are kept in one central repository (the hub) and are then pulled from your terminals. Changes will be pushed to and pulled from the hub by the terminals manually.
 On the terminals, all configuration files will be stored in the working copy of the repository and then symlinked to the respective paths. This is done automatically by the linux\_conf core scripts.
 See below for detailed information on the core scripts. 
@@ -32,14 +32,14 @@ The init script is used to structure your existing .bashrc this way. It will cop
 
 In order to get set up, you first need to create a repository on your central hub. Then you can push your configuration files from one of your machines and you're good to go.
 
-### Setting up your Central Hub
+### Setting up Your Central Hub
 You will need a private bare repository (the hub) on a server that is accessible from your terminals. If you want to store the central repository on the current machine under `~/repos/bare/linux_conf`, go to your console and run:
 ````
 cd ~/repos/bare
 git clone -o github https://github.com/i4h/linux_conf linux_conf
 ````
 
-### Installing linux_conf on your first Terminal
+### Installing linux_conf on Your First Terminal
 Let's assume you want to store linux\_conf on your terminal in `~/repos/linux_conf`
 To install linux\_conf on your __first__ terminal, run:
 ````
@@ -53,7 +53,7 @@ After the init script has run, add more configuration files you want to manage w
 using `lc_add_conf`
 Run `lc_push` or `lc_pp` when you're done to upload your changes to hub.
 
-### Installing linux_conf on more terminals
+### Installing linux_conf on More Terminals
 Now that your configuration files have been imported to your central repository,
 you can simply clone and install linux\_conf
 ````
@@ -69,16 +69,16 @@ If you want to merge an existing configuration file into the one existing in lin
 running `lc_scripts/lc_install.sh`. If you already ran `lc_install.sh`, copy the old file from the oldconfs folder back to 
 the original location.
 
-### Managing your configurations:
+### Managing Your Configurations:
 After your first installation, a set of lc_* functions will be available 
 anywhere on your bash console:
 - `lc_add_conf`: This selects existing configuration files to be managed via linux\_conf
 - `lc_import`: Imports existing configuration files into your repository and lets you merge them with files already in your repository using git difftool.
 - `lc_push`: Automatically commit changes on your terminal and push them to the hub
-- `lc_install`: Installs the configuration files in managed by linux\_conf on your system. Creates backups of existing files in linux\_conf/backups. Backups will be ignored by git and therefore only remain on the current terminal.
+- `lc_install`: Installs the configuration files managed by linux\_conf on your system. Creates backups of existing files in `linux_conf/oldconfs`. Backups will be ignored by git and therefore only remain on the current terminal.
 - `lc_pull`: Pull from hub and install.
 - `lc_pp`: Pull and push if the pull was successful.
-- `lc_notes`: Manage notes in linux\_conf/notes. Run lc_notes -h for details.
+- `lc_notes`: Manage notes in linux\_conf/notes. Run `lc_notes -h` for details.
 - `lc_add_package`: Adds the name of a package to your note "packages".
 - `lc_new_package`: Installs a package via apt-get install and adds it to the end of your note "packages".
 
