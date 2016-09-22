@@ -1,0 +1,10 @@
+#!/bin/bash
+# http://stackoverflow.com/questions/372506/how-can-i-search-git-branches-for-a-
+
+for branch in $(git branch | cut -c 3-)
+do
+  if (git ls-tree -r --name-only $branch | grep --quiet "$1") 
+  then
+     echo $branch
+  fi
+done

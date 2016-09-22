@@ -1,0 +1,12 @@
+#!/bin/bash
+# http://stackoverflow.com/questions/372506/how-can-i-search-git-branches-for-a-file-or-directory
+
+for branch in $(git branch | cut -c 3-)
+do
+    path=`git ls-tree -r --name-only $branch | grep "$1"`
+    if [ -n "$path" ] ; then
+	echo "$branch: "$path
+	git log --oneline $branch $path
+	echo ""
+    fi
+done

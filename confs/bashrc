@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# .bashrc skelleton file for use with linux_conf
+# See https://github.com/i4h/linux_conf for a detailed readme
+#
+# Author: Ingmar Vierhaus <mail@ingmar-vierhaus.de>
+#
+
+# The following parameters need to be defined for linux_conf to work:
+
+## Declare the  directory that contains linux_conf. 
+# CHANGE THE FOLLOWING LINE IF NECESSARY 
+repoDir=~/repos
+
+## Derive path of linux_conf
+lcDir=$repoDir/linux_conf
+
+# Source more parameters 
+source $lcDir/confs/bashrc_params.sh
+
+# Source global definitions for bashrc
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+# Source lc_core functionalities 
+source $lcDir/confs/bashrc_lc.sh
+
+
+# Source optional bashrc
+source $lcDir/confs/bashrc_optional.sh
+
+# Source private bashrc
+source $lcDir/confs/bashrc_private.sh
+
