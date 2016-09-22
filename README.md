@@ -15,36 +15,36 @@ These scripts were written to be used in a bash console on kubuntu and mint dist
 
 ## How does it Work?
 The files you need on all your machines are kept in one central repository (the hub) and are then pulled from your terminals. Changes will be pushed to and pulled from the hub by the terminals manually.
-On the terminals, all configuration files will be stored in the working copy of therepository and then symlinked to the respective paths. This is done automatically by the linux\_conf core scripts.
+On the terminals, all configuration files will be stored in the working copy of the repository and then symlinked to the respective paths. This is done automatically by the linux\_conf core scripts.
 See below for detailed information on the core scripts. 
-The configuration files are stored in linux\_conf/confs/. For each file, the destination is listed in linux\_conf/confs.conf
-Linux_conf is managed from a bash console. The bashrc is divided into several parts:
+The configuration files are stored in `linux_conf/confs/`. For each file, the destination is listed in `linux_conf/confs.conf`
+Linux\_conf is managed from a bash console. The `.bashrc` is divided into several parts:
 
-- .bashrc: The main bashrc file. It contains the basic definitions and then sources the following files:
-      - bashrc\_params.sh:    Contains parameters used for lc and otherwise
-      - bashrc\_lc.sh:        Contains wrappers for the linux\_conf core scrips and core functions
-      - bashrc\_optional.sh:  Contains some useful commands. The corresponding line in bashrc can be removed
-      - bashrc\_private.sh:   Your private bashrc code
+- `.bashrc`: The main bashrc file. It contains the basic definitions and then sources the following files:
+      - `bashrc_params.sh`:    Contains parameters used for lc and otherwise
+      - `bashrc_lc.sh`:        Contains wrappers for the linux\_conf core scrips and core functions
+      - `bashrc_optional.sh`:  Contains some useful commands. The corresponding line in bashrc can be removed
+      - `bashrc_private.sh`:   Your private bashrc code
   
-The init script is used to structure your existing .bashrc this way. It will copy your current ~/.bashrc to linux\_conf/confs/bashrc_private.sh
+The init script is used to structure your existing .bashrc this way. It will copy your current `~/.bashrc` to `linux_conf/confs/bashrc_private.sh`.
 
 ## Getting Set Up
 
 In order to get set up, you first need to create a repository on your central hub. Then you can push your configuration files from one of your machines and you're good to go.
 
 ### Setting up your Central Hub
-You will need a private bare repository (the hub) on a server that is accessible from your terminals. If you want to store the central repository on the current machine under ~/repos/bare/linux\_conf, go to your console and run:
+You will need a private bare repository (the hub) on a server that is accessible from your terminals. If you want to store the central repository on the current machine under `~/repos/bare/linux_conf`, go to your console and run:
 ````
 cd ~/repos/bare
-git clone -o github https://github.com/i4h/linux_conf linux\_conf
+git clone -o github https://github.com/i4h/linux_conf linux_conf
 ````
 
 ### Installing linux_conf on your first Terminal
-Let's assume you want to store linux\_conf on your terminal in ~/repos/linux\_conf
+Let's assume you want to store linux\_conf on your terminal in `~/repos/linux_conf`
 To install linux\_conf on your __first__ terminal, run:
 ````
 cd ~/repos/
-git clone -o hub you@hub:~/repos/bare/linux\_conf linux\_conf
+git clone -o hub you@hub:~/repos/bare/linux_conf linux_conf
 cd linux_conf
 lc_scripts/lc_init.sh
 ````
@@ -65,8 +65,8 @@ lc_scripts/lc_install.sh
 This will install all configuration files on your new terminal. Backups of the replaced configuration files
 will be stored in linux\_conf/oldconfs. These configuration files are by default ignored by git, so you will 
 only find them on the machine they were created on.
-If you want to merge an existing configuration file into the one existing in linux\_conf, run `lc_import` __before__
-running lc_install.sh. If you already ran lc_install.sh, copy the old file from the oldconfs folder back to 
+If you want to merge an existing configuration file into the one existing in linux\_conf, run `lc_scripts/lc_import.sh` __before__
+running `lc_scripts/lc_install.sh`. If you already ran `lc_install.sh`, copy the old file from the oldconfs folder back to 
 the original location.
 
 ### Managing your configurations:
@@ -79,6 +79,8 @@ anywhere on your bash console:
 - `lc_pull`: Pull from hub and install.
 - `lc_pp`: Pull and push if the pull was successful.
 - `lc_notes`: Manage notes in linux\_conf/notes. Run lc_notes -h for details.
-- `lc_new_package`: Installs a package via apt-get install and adds it to the end of your note linux\_conf/notes/package.md
+- `lc_add_package`: Adds the name of a package to your note "packages".
+- `lc_new_package`: Installs a package via apt-get install and adds it to the end of your note "packages".
+
 
 
