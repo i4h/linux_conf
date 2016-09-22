@@ -51,7 +51,7 @@ lc_scripts/lc_init.sh
 The init script will take you through your first setup.
 After the init script has run, add more configuration files you want to manage with linux_conf
 using `lc_add_conf`
-Run `lc_push` or `lc_pp` when you're done to upload your changes to hub.
+Run `lc_push` or `lc_pp` when you're done, to upload your changes to hub.
 
 ### Installing linux_conf on More Terminals
 Now that your configuration files have been imported to your central repository,
@@ -69,7 +69,7 @@ If you want to merge an existing configuration file into the one existing in lin
 running `lc_scripts/lc_install.sh`. If you already ran `lc_install.sh`, copy the old file from the oldconfs folder back to 
 the original location.
 
-### Managing Your Configurations:
+## Managing Your Configurations:
 After your first installation, a set of lc_* functions will be available 
 anywhere on your bash console:
 - `lc_add_conf`: This selects existing configuration files to be managed via linux\_conf
