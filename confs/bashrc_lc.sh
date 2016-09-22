@@ -93,28 +93,6 @@ function sort_aliases {
     rm head.tmp aliases.tmp footer.tmp
 }
 
-# Some working md2Html tool is needed by lc_notes.sh
-function md2html {
-    if (( $# < 1 )) ; then
-	echo "Usage: md2Html input.md [output.html]";
-	echo "If second argument is not given, output fiel name will"
-	echo "input file name with html extension"
-    else
-	sourcefile=$1
-	if (( $# < 2 )) ; then
-	    name=${sourcefile%".md"} 
-	    target=$name".html"
-	else
-	    target=$2
-	fi
-
-	pandoc -f markdown_github --include-in-header="$lcDir/notes/css/_github-markdown-css.html" $sourcefile > $target
-	echo "Rendered html to $target"
-    fi
-}
-
-
-
 ### Source autocomplete scripts
 for i in `ls $lcDir/lc_scripts/lc_ac_*sh`; do
     source $i;

@@ -96,6 +96,9 @@ for ARG ; do
     fi
 done
 
+# Needed for md2html
+lcDir=`pwd`
+export lcDir=$lcDir
 
 #Handle no-argument cases first
 if [[ $SHORTLIST = y ]] ; then
@@ -113,9 +116,9 @@ fi
 if [[ $BUILD = y ]] ; then
     echo "Building Markups:"
     echo "---------------"
-    type /usr/local/bin/http >/dev/null 2>&1 || { 
-	echo >&2 "I require httpie (binary http) but it's not installed.  Aborting."; 
-	exit $EXIT_ERROR; 
+    command -v pandoc >/dev/null 2>&1 || { 
+	echo "I require pandoc but it's not installed.  Aborting." >&2
+	exit $EXIT_ERROR
     }
     cd notes > /dev/null
     notes=`ls *md`
@@ -129,9 +132,10 @@ if [[ $BUILD = y ]] ; then
 	then
 	    exists=n
 	fi
-	cp includes/_head.html $target
-	/usr/local/bin/http -p b POST https://api.github.com/markdown text="@"$i >> $target
-	cat includes/_bottom.html >> $target
+	#cp includes/_head.html $target
+	#/usr/local/bin/http -p b POST https://api.github.com/markdown text="@"$i >> $target
+	#cat includes/_bottom.html >> $target
+	../scripts/md2html.sh $i $target
 	if [[ $exists = n ]] ; then
 	    echo -n "adding html file to git ... "
 	    git add $target
