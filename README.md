@@ -82,5 +82,8 @@ anywhere on your bash console:
 - `lc_add_package`: Adds the name of a package to your note "packages".
 - `lc_new_package`: Installs a package via apt-get install and adds it to the end of your note "packages".
 
+## Lc_notes
 
+Click the picture to watch a usage demo of lc_notes:
 
+[![asciicast](https://asciinema.org/a/98468.png)](https://asciinema.org/a/98468)
